@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact index
+{% endblock %}
+
+{% block body %}
+	<h1>Contactez-moi !</h1>
+	<div class="modal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Modal title</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p>Modal body text goes here.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<table class="table">
+	        <thead>
+	            <tr>
+	                <th>Firstname</th>
+	                <th>Email</th>
+	                <th>Phone</th>
+	                <th>Avatar</th>
+	                <th>Content</th>
+	                <th>actions</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	        {% for contact in contacts %}
+	            <tr>
+	                <td>{{ contact.firstname }}</td>
+	                <td>{{ contact.email }}</td>
+	                <td>{{ contact.phone }}</td>
+	                <td>{{ contact.avatar }}</td>
+	                <td>{{ contact.content }}</td>
+	                <td>
+	                    <a href="{{ path('app_contact_show', {'id': contact.id}) }}">show</a>
+	                    <a href="{{ path('app_contact_edit', {'id': contact.id}) }}">edit</a>
+	                </td>
+	            </tr>
+	        {% else %}
+	            <tr>
+	                <td colspan="6">no records found</td>
+	            </tr>
+	        {% endfor %}
+	        </tbody>
+	    </table>
+
+	<a href="{{ path('app_contact_new') }}">Create new</a>
+{% endblock %}
